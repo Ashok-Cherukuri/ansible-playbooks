@@ -1,0 +1,16 @@
+---
+- name: Users creations
+  hosts: all
+  tasks:
+    - name: Creating users
+      user:
+        name: "{{item.a}}"
+        password: "{{item.b}}"
+        uid: "{{item.c}}"
+        home: "{{item.d}}"
+        comment: "{{item.e}}"
+      with_items:
+        - {a: ashok,b: ch,c: 123,d: /home/ashok,e: "ashokch"}
+        - {a: sai,b: ch,c: 456,d: /home/sai,e: "saich"}
+        - {a: family,b: ch,c: 111,d: /home/family,e: "familych"}
+... 

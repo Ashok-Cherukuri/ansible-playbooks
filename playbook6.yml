@@ -1,0 +1,19 @@
+---
+- name: Installing S/W's on a required node
+  hosts: all
+  tasks:
+    - name: Git Installation
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+    - name: tomcat10 installation
+      apt:
+        name: "{{d}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+    - name: apache2 installation
+      apt:
+        name: "{{e}}"
+        state: "{{b}}"
+...

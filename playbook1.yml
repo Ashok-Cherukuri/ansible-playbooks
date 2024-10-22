@@ -1,0 +1,18 @@
+---
+- name: Installating Apache2 on 2 managed nodes
+  hosts: all
+  tasks:
+    - name: Installation Apache2
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+    - name: Editing index.html file
+      copy:
+        content: "Welcome to Apache Dashboard!!"
+        dest: /var/www/html/index.html
+    - name:
+      service:
+        name: apache2
+        state: restarted
+...

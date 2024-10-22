@@ -1,0 +1,17 @@
+---
+- name: executing when condition
+  hosts: all
+  tasks:
+    - name: check f1 is exists or not on /home
+      stat:
+        path: /home/f1
+      register: a
+    - name: stroing output of above module
+      debug:
+        var: a
+    - name: creating new folder f1 if not prsent
+      file:
+        name: /home/f1
+        state: directory
+      when: a.stat.exists == false
+...

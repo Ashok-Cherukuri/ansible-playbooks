@@ -1,0 +1,22 @@
+---
+- name: softwares installation
+  hosts: all
+  tasks:
+    - name: Installation process
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: apache2,b: present,c: yes}
+        - {a: tomcat10,b: present,c: yes}
+        - {a: tree,b: present,c: no}
+        - {a: git,b: latest,c: yes}
+    - name: URL accessable or not
+      uri:
+        url: "{{item}}"
+        status_code: 200
+      with_items:
+        - http://172.31.37.227
+        - http://172.31.43.11
+...

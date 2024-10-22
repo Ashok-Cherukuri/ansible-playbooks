@@ -1,0 +1,15 @@
+---
+- name: Install different software applications Using loop
+  hosts: all
+  tasks:
+    - name: Softwares installation
+      apt:
+        name: "{{item.a}}"
+        state: latest
+        update_cache: "{{item.b}}"
+      with_items:
+          - {a: tomcat10,b: yes}
+          - {a: apache2,b: no}
+          - {a: git,b: yes}
+...
+

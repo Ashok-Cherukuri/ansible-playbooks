@@ -1,0 +1,38 @@
+---
+- name: Installation tomcat10 on all nodes
+  hosts: all
+  tasks:
+    - name: Installation tomcat10
+      apt:
+        name: tomcat10
+        state: present
+        update_cache: yes
+    - name: Installing tomcat10-admin
+      apt:
+        name: tomcat10-admin
+        state: present
+    - name: Copy tomcat-user.xml file
+      copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat10/
+    - name: Edit server.xml file
+      replace:
+        regexp: 9090
+        replace: 8080
+        path: /etc/tomcat10/server.xml
+    - name: Restarting tomcat10
+      service:
+        name: tomcat10
+        state: restarted
+    - name: pass for 1mins
+      pause:
+        minutes: 1
+    - name: Checking tomcat reachable on server 1 or not
+      uri:
+        url: http://172.31.37.227:8080
+        status_code: 200
+    - name: Checking tomcat reachable on server2 or not
+      uri: 
+        url: http://172.31.43.11:8080
+        status_code: 200
+...

@@ -1,0 +1,23 @@
+---
+- name: tags executing
+  hosts: all
+  tasks:
+    - name: users creation
+      user:
+        name: "{{item.a}}"
+        password: "{{item.b}}"
+        home: "{{item.c}}"
+      with_items:
+        - {a: prod,b: production,c: /home/prod}
+        - {a: dev,b: devlopment,c: /home/dev}
+      tags: never
+    - name: file copying
+      copy:
+        src: /etc/passwd
+        dest: /home
+    - name: url access checking
+      uri:
+        url: http://172.31.37.227
+        status_code: 200
+      tags: always
+...

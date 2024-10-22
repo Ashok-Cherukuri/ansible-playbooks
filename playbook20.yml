@@ -1,0 +1,23 @@
+---
+- name: Executing handlers
+  hosts: 172.31.37.227
+  tasks:
+    - name: Installing SW's
+      apt:
+        name: apache2
+        state: present
+    - name: modify content in index.html file
+      copy:
+        content: "Welcome to apache2 home"
+        dest: /var/www/html/index.html
+    - name: URL access check on servers
+      uri:
+        url: http://172.31.37.227
+        status_code: 200
+      notify: Restarting apache2
+  handlers:
+    - name: Restarting apache2
+      service:
+        name: apache2
+        state: restarted
+...

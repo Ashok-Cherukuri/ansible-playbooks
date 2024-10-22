@@ -1,0 +1,17 @@
+---
+- name: URL accessable or not
+  hosts: all
+  vars:
+    - a: http://172.31.37.227
+    - b: 200
+    - c: http://172.31.43.11
+  tasks:
+    - name: checking apache reachable on server1
+      uri:
+        url: "{{a}}"
+        status_code: "{{b}}"
+    - name: checking on server2
+      uri:
+        url: "{{c}}"
+        status_code: "{{b}}"
+

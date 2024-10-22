@@ -1,0 +1,16 @@
+---
+- name: softwares installation
+  hosts: all
+  tasks:
+    - name: installation of sotwares
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+        update_cache: "{{item.c}}"
+      with_items:
+        - {a: git,b: present,c: no}
+        - {a: tree,b: absent,c: no}
+        - {a: maven,b: present,c: yes}
+        - {a: apache2,b: latest,c: yes}
+        - {a: tomcat10,b: latest,c: yes}
+...

@@ -1,0 +1,15 @@
+---
+- name: Uninstalling apache2 on all hosts
+  hosts: all
+  tasks:
+    - name: Uninstalling apache2
+      apt: 
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+    - name: Installing apache2
+      apt:
+        name: "{{d}}"
+        state: "{{e}}"
+        update_cache: "{{f}}"
+...

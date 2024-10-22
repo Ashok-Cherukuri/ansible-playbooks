@@ -1,0 +1,26 @@
+---
+- name: Executing handlers
+  hosts: 172.31.37.227
+  tasks:
+    - name: Installing SW's
+      apt:
+        name: apache2
+        state: absent
+    - name: Installing SW's
+      apt:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+      with_items:
+        - {a: apache2,b: present}
+        - {a: tomcat10,b: latest}
+    - name: modify content in index.html file
+      copy:
+        content: "Welcome to apache2 home!!"
+        dest: /var/www/html/index.html
+      notify: Restarting apache2
+  handlers:
+    - name: Restarting apache2
+      service:
+        name: apache2
+        state: restarted
+...

@@ -1,0 +1,24 @@
+---
+- name: URL accessbale checking
+  hosts: all
+  tasks:
+    - name: url accessable or not
+      uri:
+        url: http://172.31.37.227:9090
+        status_code: 200
+    - name: url accessable or not 
+      uri:
+        url: http://172.31.43.11:9090
+        status_code: 200
+    - name: replace 8080 with 9090
+      replace:
+        regexp: 8080
+        replace: 9090
+        path: /etc/tomcat10/server.xml
+      notify: To restart tomcat
+  handlers:
+    - name: To restart tomcat
+      service:
+        name: tomcat10
+        state: restarted
+...

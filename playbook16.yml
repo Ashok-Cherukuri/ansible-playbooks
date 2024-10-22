@@ -1,0 +1,17 @@
+---
+- name: Executing when conditions
+  hosts: all
+  tasks:
+    - name: checking file has writable permissions or not
+      stat:
+        path: /home/f1
+      register: a
+    - name: stroing stat result 
+      debug:
+        var: a
+    - name: change permissions file /home/f1 if it is writable
+      file:
+        name: /home/f1
+        mode: 000
+      when: a.stat.writeable == true
+...

@@ -1,0 +1,19 @@
+---
+- name: Installing S/W's on a required node
+  hosts: 172.31.37.227
+  tasks:
+    - name: Git Installation
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+    - name: tomcat10 installation
+      apt:
+        name: tomcat10
+        state: latest
+        update_cache: yes
+    - name: apache2 installation
+      apt:
+        name: apache2
+        state: latest
+...
