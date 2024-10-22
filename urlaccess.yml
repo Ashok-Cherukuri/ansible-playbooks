@@ -1,0 +1,9 @@
+---
+- name: URL accessable or not
+  uri:
+    url: "{{item}}"
+    status_code: 200
+  with_items:
+    - http://172.31.43.11
+    - http://172.31.37.227
+...

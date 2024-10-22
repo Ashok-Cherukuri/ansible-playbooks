@@ -1,0 +1,12 @@
+---
+- name: confiuring apache2 by calling child playbooks
+  hosts: all
+  tasks:
+    - name: calling child playbooks
+      include_tasks: "{{item}}"
+      with_items:
+        - apache2.yml
+        - indexhtml.yml
+        - restartapache2.yml
+        - urlaccess.yml
+...
