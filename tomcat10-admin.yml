@@ -1,0 +1,6 @@
+---
+- name: tomcat10-admin installation
+  apt:
+    name: tomcat10-admin
+    state: present
+...

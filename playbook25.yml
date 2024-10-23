@@ -1,0 +1,14 @@
+---
+- name: Execute child playbooks
+  hosts: all
+  tasks:
+    - name: Calling child playbooks
+      include_tasks: "{{item}}"
+      with_items:
+        - tomcat10install.yml
+        - tomcat10-admin.yml
+        - tomcat-usersXML.yml
+        - editportnumber.yml
+        - restarttomcat10.yml
+...
+

@@ -1,0 +1,7 @@
+---
+- name: tomcat10 installation
+  apt:
+    name: tomcat10
+    state: latest
+    update_cache: no
+...

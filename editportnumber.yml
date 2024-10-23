@@ -1,0 +1,7 @@
+---
+- name: replace 9090 with 8080
+  replace:
+    regexp: 9090
+    replace: 8080
+    dest: /etc/tomcat10/server.xml
+...

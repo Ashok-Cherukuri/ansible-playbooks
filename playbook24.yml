@@ -1,0 +1,31 @@
+---
+- name: tomcat configuration on servers
+  hosts: all
+  tasks:
+    - name: Tomcat10 installation
+      apt:
+        name: tomcat10
+        state: present
+        update_cache: yes
+    - name: Tomcat10-admin installation
+      apt:
+        name: tomcat10-admin
+        state: present
+        update_cache: no
+    - name: Copt tomcat-users.xm file
+      copy:
+        src: tomcat-users.xml
+        dest: /etc/tomcat10/
+    - name: change port number from 8080 to 9090
+      replace:
+        regexp: 8080
+        replace: 9090
+        dest: /etc/tomcat10/server.xml
+      notify: Restart tomcat10 
+  handlers:
+    - name: Restart tomcat10
+      service:
+        name: tomcat10
+        state: restarted
+...
+
