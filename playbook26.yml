@@ -1,0 +1,20 @@
+---
+- name: Configuring Nginx on all managed nodes
+  hosts: all
+  tasks:
+    - name: Installing nginx
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+    - name: Copy index.html file to /usr/share/nginx/html
+      copy:
+        content: "Welcome to nginx home page!!"
+        dest: /usr/share/nginx/html/index.html
+    - name: Restart nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+...
+  

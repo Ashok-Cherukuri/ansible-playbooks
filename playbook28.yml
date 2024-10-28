@@ -1,0 +1,10 @@
+---
+- name: Docker Installation on Managed nodes
+  hosts: all
+  tasks:
+    - name: Installing docke
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+...
