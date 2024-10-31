@@ -1,0 +1,9 @@
+---
+- name: URL access check
+  uri:
+    url: "{{item.a}}"
+    status_code: "{{item.b}}"
+  with_items:
+    - {a: "{{h}}",b: "{{i}}"}
+    - {a: "{{j}}",b: "{{i}}"}
+...

@@ -1,0 +1,12 @@
+---
+- name: apache2 configuration
+  hosts: all
+  tasks:
+    - name: calling all child playbooks to config apache2
+      include_tasks: "{{item}}"
+      with_items:
+        - apache2install.yml
+        - editindexhtml.yml
+        - restartapache2.yml
+        - apache2urlaccesscheck.yml
+...

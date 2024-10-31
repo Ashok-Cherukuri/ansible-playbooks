@@ -1,0 +1,11 @@
+---
+- name: continuous download and build
+  hosts: Devserver
+  tasks:
+    - name: continuous download the code from git
+      git:
+        repo: https://github.com/Ashok-Cherukuri/maven.git
+        dest: Dev-git
+    - name: create artifacts from above code
+      shell: cd Dev-git;mvn package 
+...
