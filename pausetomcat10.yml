@@ -1,0 +1,5 @@
+---
+- name: pause tomcat10 for 30sec
+  pause:
+    seconds: "{{kk}}"
+...

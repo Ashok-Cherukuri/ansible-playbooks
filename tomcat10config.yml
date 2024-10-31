@@ -1,0 +1,13 @@
+---
+- name: tomcat10 configuration
+  hosts: all
+  tasks:
+    - name: calling child playbooks
+      include_tasks: "{{item}}"
+      with_items:
+        - tomcatinstall.yml
+        - copytomcatusersxml.yml
+        - restarttomcat10.yml
+        - pausetomcat10.yml
+        - tomcat10urlaccess.yml
+...

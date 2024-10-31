@@ -1,0 +1,6 @@
+---
+- name: copy tomcatusersxml file
+  copy:
+    src: "{{gg}}"
+    dest: "{{hh}}"
+...
